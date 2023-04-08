@@ -4,51 +4,15 @@
 <title>test</title>
 <script src="js/handicap.js"></script>
 
-<main>
-  <canvas id="c1" width="1000" height="1000">
+<body>
+  <canvas id="c1"></canvas>
+  <canvas id="c2"></canvas>
+  <span id="test"></span>
   <!-- <label><input type="checkbox" name="white-black" value="white-black" class="option">white-black</label> -->
-</main>
 <script>
-  window.onload = function () {
-    var canvas = document.getElementById("c1");
-    var ctx = canvas.getContext("2d");
-    var img = new Image();
-    img.src = "images/sample.jpg";
-    img.onload = function () {
-      ctx.drawImage(img, 0, 0);
-      var src = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      var dst = ctx.createImageData(canvas.width, canvas.height);
-
-      for (var i = 0; i < src.data.length; i = i + 4) {
-        var pixel = (src.data[i] + src.data[i + 1] + src.data[i + 2]) / 3;
-        dst.data[i] = pixel //Red
-        dst.data[i + 1] = pixel //Green
-        dst.data[i + 2] = pixel //Blue
-        dst.data[i + 3] = src.data[i + 3]; //Alpha(0 -> clear)
-      }
-
-      ctx.putImageData(dst, 0, 0);
-    };
-  };
-  // window.onload = function () {
-  //   var canvas = document.getElementById("c1");
-  //   var ctx = canvas.getContext("2d");
-  //   var img = new Image();
-  //   img.src = "images/sample.jpg";
-  //   img.onload = function () {
-  //     ctx.drawImage(img, 0, 0);
-  //     var src = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  //     var dst = ctx.createImageData(canvas.width, canvas.height);
-
-  //     for (var i = 0; i < src.data.length; i = i + 4) {
-  //       var pixel = (src.data[i] + src.data[i + 1] + src.data[i + 2]) / 3;
-  //       dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = pixel;
-  //       dst.data[i + 3] = src.data[i + 3];
-  //     }
-
-  //     ctx.putImageData(dst, 0, 0);
-  //   };
-  // };
+  const CANVAS_HEIGHT = 150
+  makeCanvas("images/sample.jpg", "c1")
+  makeCanvas("images/sample2.jpg", "c2")
 </script>
-
+</body>
 </html>
